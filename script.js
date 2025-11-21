@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bioMessages = [
     "Hi, I'm 19 and I'm the only girl of my kind. I like coding stuff, playing games, spending money to look pretty and I have a huge obsession with music.",
     "\"'Cause pretty girls can never die.\"",
-    "\"Ningendomo wa, baka da nya~.\"",
+    "\"Ningendomo wa, baka da nya.\"",
     "\"Love and online numbers are her coping mechanisms\""
   ];
   let bioText = '';
@@ -337,4 +337,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   typeWriterStart();
+
 });
