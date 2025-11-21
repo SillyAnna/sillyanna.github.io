@@ -161,7 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
     "Hi, I'm 19 and I'm the only girl of my kind. I like coding stuff, playing games, spending money to look pretty and I have a huge obsession with music.",
     "\"'Cause pretty girls can never die.\"",
     "\"Ningendomo wa, baka da nya.\"",
-    "\"Love and online numbers are her coping mechanisms\""
+    "\"Love and online numbers are her coping mechanisms\"",
+    "\"I'm a defect, surgical project\""
   ];
   let bioText = '';
   let bioIndex = 0;
@@ -340,4 +341,5 @@ document.addEventListener('DOMContentLoaded', () => {
   typeWriterStart();
 
 });
+
 
