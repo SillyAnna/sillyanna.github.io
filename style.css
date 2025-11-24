@@ -453,6 +453,26 @@ body.home-theme {
 }
 
 
+@media (max-width: 430px) {
+  .spotify-widget {
+    padding: 8px 12px;
+  }
+  
+  .spotify-cover-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .spotify-song {
+    font-size: 13px;
+  }
+  
+  .spotify-artist {
+    font-size: 11px;
+  }
+}
+
+
 @media (max-width: 768px) {
 
   #profile-block, #skills-block {

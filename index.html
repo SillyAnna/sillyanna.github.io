@@ -122,7 +122,7 @@
         
         .top-controls {
             position: fixed;
-            bottom: calc(56% - 240px - 60px);
+            bottom: calc(56% - 290px - 60px);
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -328,7 +328,7 @@
             margin-top: 0;
             pointer-events: auto;
             opacity: 1 !important;
-            margin-bottom: 22.5px;
+            margin-bottom: 0px;
         }
 
         .social-icon {
@@ -547,6 +547,128 @@
             text-align: center;
         }
 
+        .spotify-widget {
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 20px;
+          padding: 10px 15px;
+          backdrop-filter: blur(5px);
+          display: flex;
+          align-items: center;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          margin-bottom: 10px;
+          pointer-events: auto;
+          opacity: 1 !important;
+        }
+
+        .spotify-content {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          width: 100%;
+        }
+
+        .spotify-cover-wrapper {
+          position: relative;
+          width: 48px;
+          height: 48px;
+          flex-shrink: 0;
+        }
+
+        .spotify-cover {
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+          object-fit: cover;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .spotify-info {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-width: 0;
+        }
+
+        .spotify-header-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2px;
+        }
+
+        .spotify-status {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+
+        .spotify-mini-icon {
+          width: 12px;
+          height: 12px;
+          opacity: 0.8;
+        }
+
+        #spotify-status-text {
+          font-size: 10px;
+          color: rgba(255, 255, 255, 0.6);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .spotify-refresh-btn {
+          background: none;
+          border: none;
+          color: rgba(255, 255, 255, 0.6);
+          cursor: pointer;
+          padding: 2px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s;
+        }
+
+        .spotify-refresh-btn:hover {
+          color: white;
+          transform: rotate(180deg);
+        }
+
+        .spotify-refresh-btn svg {
+          width: 14px;
+          height: 14px;
+        }
+
+        .spotify-details-container {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .spotify-song-link {
+          text-decoration: none;
+          color: white;
+          display: inline-block;
+        }
+
+        .spotify-song {
+          font-weight: bold;
+          font-size: 14px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+        }
+
+        .spotify-song:hover {
+          color: var(--primary-color);
+          text-decoration: underline;
+        }
+
+        .spotify-artist {
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.8);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
         
         @media (max-width: 430px) {
             
@@ -747,6 +869,33 @@
 
             <div class="profile-footer">
 
+                <div id="spotify-widget" class="spotify-widget">
+                    <div class="spotify-content">
+                        <div class="spotify-cover-wrapper">
+                            <img id="spotify-art" src="assets/spotify.png" alt="Cover" class="spotify-cover">
+                        </div>
+                        <div class="spotify-info">
+                            <div class="spotify-header-row">
+                                <div class="spotify-status">
+                                    <img src="assets/spotify.png" class="spotify-mini-icon" alt="icon">
+                                    <span id="spotify-status-text">Last Played</span>
+                                </div>
+                                <button id="spotify-refresh" class="spotify-refresh-btn" title="Refresh">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="spotify-details-container">
+                                <a id="spotify-link" href="#" target="_blank" class="spotify-song-link">
+                                    <div id="spotify-song" class="spotify-song">Offline</div>
+                                </a>
+                                <div id="spotify-artist" class="spotify-artist">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bio-separator"></div>
                 <div class="social-links">
                     <a href="https://www.roblox.com/users/3838965871/profile" target="_blank">
                         <img src="assets/roblox.png" alt="Roblox" class="social-icon">
