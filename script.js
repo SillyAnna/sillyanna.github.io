@@ -243,7 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
     "\"Love and online numbers are her coping mechanisms.\"",
     "\"I'm a defect, surgical project.\"",
     "\"I am an angel sent down from above. Praise be the heavens, Praise me I'm the lord.\"",
-    "\"Everything means nothing to me.\""
+    "\"Everything means nothing to me.\"",
+    "\"I can't do well when I think you're going to leave me but I know I try. Are you going to leave me now?\""
   ];
   let bioText = '';
   let bioIndex = 0;
@@ -422,6 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   typeWriterStart();
 
 });
+
 
 
 
