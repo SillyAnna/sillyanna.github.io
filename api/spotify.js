@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', 'https://sillyanna.github.io');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
@@ -13,6 +13,12 @@ export default async function handler(req, res) {
     const clientId = process.env.SPOTIFY_CLIENT_ID;
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
     const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
+
+    // Check if variables are missing and print to Vercel logs
+    if (!clientId || !clientSecret || !refreshToken) {
+        console.error("CRITICAL ERROR: One or more Spotify environment variables are missing in Vercel!");
+        return res.status(500).json({ error: 'Missing environment variables. Did you add them in Vercel Settings?' });
+    }
 
     const getAccessToken = async () => {
         try {
@@ -28,7 +34,10 @@ export default async function handler(req, res) {
                 })
             });
 
-            if (!response.ok) throw new Error('Failed to refresh token');
+            if (!response.ok) {
+                const errorDetails = await response.text();
+                throw new Error(`Spotify API rejected the token refresh. Status: ${response.status}. Details: ${errorDetails}`);
+            }
             const data = await response.json();
             return data.access_token;
         } catch (error) {

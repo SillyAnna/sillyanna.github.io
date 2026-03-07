@@ -1,7 +1,7 @@
 let hasUserInteracted = false;
 
 
-const spotifyApiUrl = 'https://sillyanna.vercel.app/api/spotify';
+const spotifyApiUrl = '~/api/spotify';
 
 async function getSpotifyStatus() {
   try {
