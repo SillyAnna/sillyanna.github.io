@@ -1,0 +1,68 @@
+export default async function handler(req, res) {
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', 'https://sillyanna.github.io');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+
+    // These environment variables are safely hidden in Vercel - NEVER printed to the browser!
+    const clientId = process.env.SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+    const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
+
+    const getAccessToken = async () => {
+        try {
+            const response = await fetch('https://accounts.spotify.com/api/token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Basic ' + Buffer.from(clientId + ':' + clientSecret).toString('base64')
+                },
+                body: new URLSearchParams({
+                    grant_type: 'refresh_token',
+                    refresh_token: refreshToken
+                })
+            });
+
+            if (!response.ok) throw new Error('Failed to refresh token');
+            const data = await response.json();
+            return data.access_token;
+        } catch (error) {
+            console.error("Auth Error:", error);
+            return null;
+        }
+    };
+
+    const accessToken = await getAccessToken();
+    if (!accessToken) {
+        return res.status(500).json({ error: 'Failed to authenticate with Spotify' });
+    }
+
+    try {
+        let response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+            headers: { 'Authorization': `Bearer ${accessToken}` }
+        });
+
+        if (response.status === 204 || response.status > 400) {
+            response = await fetch('https://api.spotify.com/v1/me/player/recently-played?limit=1', {
+                headers: { 'Authorization': `Bearer ${accessToken}` }
+            });
+            const data = await response.json();
+            if (data.items && data.items.length > 0) {
+                return res.status(200).json({ track: data.items[0].track, is_playing: false });
+            } else {
+                return res.status(200).json({ track: null, is_playing: false });
+            }
+        } else {
+            const data = await response.json();
+            return res.status(200).json({ track: data.item, is_playing: data.is_playing });
+        }
+    } catch (error) {
+        console.error("Spotify Fetch Error:", error);
+        return res.status(500).json({ error: 'Failed to fetch Spotify status' });
+    }
+}
