@@ -1,6 +1,15 @@
 export default async function handler(req, res) {
+    // Only allow YOUR website to ask for the data! If someone else uses this link, it throws an error.
     res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    
+    // Check if the request is actually coming from your github pages site
+    const origin = req.headers.origin;
+    if (origin === 'https://sillyanna.github.io' || origin === 'http://localhost:3000') {
+         res.setHeader('Access-Control-Allow-Origin', origin);
+    } else {
+         return res.status(403).json({ error: "Access Denied. You are not sillyanna.github.io."});
+    }
+
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
@@ -26,7 +35,7 @@ export default async function handler(req, res) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': 'Basic ' + Buffer.from(clientId + ':' + clientSecret).toString('base64')
+                    'Authorization': 'Basic ' + Buffer.from(clientId.trim() + ':' + clientSecret.trim()).toString('base64')
                 },
                 body: new URLSearchParams({
                     grant_type: 'refresh_token',

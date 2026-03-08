@@ -1,10 +1,15 @@
 let hasUserInteracted = false;
 
+// Spotify secrets are securely stored as Environment Variables on Vercel!
+// This frontend code no longer contains any private keys.
 
-const spotifyApiUrl = '~/api/spotify';
+// NOTE: This URL points to your secure Vercel API helper!
+// Your website will still live at sillyanna.github.io, but it will ask this URL for the Spotify data.
+const spotifyApiUrl = 'https://sillyanna-github-io.vercel.app/api/spotify';
 
 async function getSpotifyStatus() {
   try {
+    // Fetch data from our secure backend
     const response = await fetch(spotifyApiUrl);
     if (!response.ok) throw new Error('API fetch error');
 
