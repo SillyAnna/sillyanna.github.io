@@ -1,8 +1,6 @@
 export default async function handler(req, res) {
-    // Only allow YOUR website to ask for the data! If someone else uses this link, it throws an error.
     res.setHeader('Access-Control-Allow-Credentials', true);
     
-    // Check if the request is actually coming from your github pages site
     const origin = req.headers.origin;
     if (origin === 'https://sillyanna.github.io' || origin === 'http://localhost:3000') {
          res.setHeader('Access-Control-Allow-Origin', origin);
@@ -18,12 +16,10 @@ export default async function handler(req, res) {
         return;
     }
 
-    // These environment variables are safely hidden in Vercel - NEVER printed to the browser!
     const clientId = process.env.SPOTIFY_CLIENT_ID;
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
     const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
-    // Check if variables are missing and print to Vercel logs
     if (!clientId || !clientSecret || !refreshToken) {
         console.error("CRITICAL ERROR: One or more Spotify environment variables are missing in Vercel!");
         return res.status(500).json({ error: 'Missing environment variables. Did you add them in Vercel Settings?' });
