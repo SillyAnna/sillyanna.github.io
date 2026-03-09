@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
             font-family: 'Courier New', monospace;
         }
 
-    
+
         body {
             background-color: #000;
             color: #fff;
@@ -48,7 +49,8 @@
             transition: opacity 0.5s;
         }
 
-        #hacker-overlay, #snow-overlay {
+        #hacker-overlay,
+        #snow-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -83,7 +85,7 @@
             border-color: rgba(255, 255, 255, 0.8);
         }
 
-        
+
         .volume-control {
             display: flex;
             align-items: center;
@@ -119,7 +121,7 @@
         }
 
 
-        
+
         .top-controls {
             position: fixed;
             bottom: calc(56% - 290px - 60px);
@@ -135,7 +137,7 @@
             backdrop-filter: blur(5px);
         }
 
-        
+
         #profile-block {
             position: fixed;
             top: 50%;
@@ -178,11 +180,9 @@
             right: -2px;
             bottom: -2px;
             border-radius: 50%;
-            background: radial-gradient(
-                circle at 10px 10px,
-                var(--primary-color, #47478e) 10%,
-                transparent 15%
-            );
+            background: radial-gradient(circle at 10px 10px,
+                    var(--primary-color, #47478e) 10%,
+                    transparent 15%);
             animation: orbit 3s linear infinite;
             z-index: -1;
             filter: blur(1px);
@@ -216,7 +216,7 @@
             margin-bottom: 10px;
         }
 
-        
+
         @font-face {
             font-family: 'Angel Wish';
             src: url('assets/Angel_wish.ttf') format('truetype');
@@ -344,7 +344,7 @@
             transform: scale(1.4) rotateY(15deg);
         }
 
-        
+
         #skills-block {
             position: fixed;
             top: 50%;
@@ -404,7 +404,7 @@
         }
 
 
-        
+
         #results-button-container {
             position: fixed;
             top: 20px;
@@ -457,13 +457,13 @@
             border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
         }
 
-        
+
         .home-theme #profile-block,
         .home-theme #skills-block {
             border-color: #47478e;
         }
 
-        
+
         .glitch {
             animation: glitch 0.2s ease-in-out;
         }
@@ -472,18 +472,23 @@
             0% {
                 transform: translate(0);
             }
+
             20% {
                 transform: translate(-2px, 2px);
             }
+
             40% {
                 transform: translate(-2px, -2px);
             }
+
             60% {
                 transform: translate(2px, 2px);
             }
+
             80% {
                 transform: translate(2px, -2px);
             }
+
             100% {
                 transform: translate(0);
             }
@@ -493,6 +498,7 @@
             0% {
                 transform: rotate(0deg);
             }
+
             100% {
                 transform: rotate(360deg);
             }
@@ -502,12 +508,13 @@
             0% {
                 transform: rotate(0deg);
             }
+
             100% {
                 transform: rotate(360deg);
             }
         }
 
-        
+
         .cursor-trail {
             position: fixed;
             pointer-events: none;
@@ -524,7 +531,7 @@
             transition: opacity 0.3s ease;
         }
 
-        
+
         #start-screen {
             position: fixed;
             top: 0;
@@ -548,131 +555,132 @@
         }
 
         .spotify-widget {
-          background: rgba(0, 0, 0, 0.3);
-          border-radius: 20px;
-          padding: 10px 15px;
-          backdrop-filter: blur(5px);
-          display: flex;
-          align-items: center;
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          margin-bottom: 10px;
-          pointer-events: auto;
-          opacity: 1 !important;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 10px 15px;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 10px;
+            pointer-events: auto;
+            opacity: 1 !important;
         }
 
         .spotify-content {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
         }
 
         .spotify-cover-wrapper {
-          position: relative;
-          width: 48px;
-          height: 48px;
-          flex-shrink: 0;
+            position: relative;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
         }
 
         .spotify-cover {
-          width: 100%;
-          height: 100%;
-          border-radius: 8px;
-          object-fit: cover;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .spotify-info {
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-          min-width: 0;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
         }
 
         .spotify-header-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
         }
 
         .spotify-status {
-          display: flex;
-          align-items: center;
-          gap: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .spotify-mini-icon {
-          width: 12px;
-          height: 12px;
-          opacity: 0.8;
+            width: 12px;
+            height: 12px;
+            opacity: 0.8;
         }
 
         #spotify-status-text {
-          font-size: 10px;
-          color: rgba(255, 255, 255, 0.6);
-          text-transform: uppercase;
-          letter-spacing: 1px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .spotify-refresh-btn {
-          background: none;
-          border: none;
-          color: rgba(255, 255, 255, 0.6);
-          cursor: pointer;
-          padding: 2px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
         }
 
         .spotify-refresh-btn:hover {
-          color: white;
-          transform: rotate(180deg);
+            color: white;
+            transform: rotate(180deg);
         }
 
         .spotify-refresh-btn svg {
-          width: 14px;
-          height: 14px;
+            width: 14px;
+            height: 14px;
         }
 
         .spotify-details-container {
-          display: flex;
-          flex-direction: column;
+            display: flex;
+            flex-direction: column;
         }
 
         .spotify-song-link {
-          text-decoration: none;
-          color: white;
-          display: inline-block;
+            text-decoration: none;
+            color: white;
+            display: inline-block;
         }
 
         .spotify-song {
-          font-weight: bold;
-          font-size: 14px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 100%;
+            font-weight: bold;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
 
         .spotify-song:hover {
-          color: var(--primary-color);
-          text-decoration: underline;
+            color: var(--primary-color);
+            text-decoration: underline;
         }
 
         .spotify-artist {
-          font-size: 12px;
-          color: rgba(255, 255, 255, 0.8);
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        
+
         @media (max-width: 430px) {
-            
-            #profile-block, #skills-block {
+
+            #profile-block,
+            #skills-block {
                 width: 90vw;
                 max-width: 350px;
                 min-height: 280px;
@@ -771,7 +779,7 @@
                 font-size: 12px;
             }
 
-            
+
             .top-controls {
                 bottom: 70px;
                 gap: 10px;
@@ -797,7 +805,7 @@
                 height: 10px;
             }
 
-            
+
             #results-button-container {
                 top: 10px;
             }
@@ -813,7 +821,7 @@
                 padding: 6px 10px;
             }
 
-            
+
             #start-text {
                 font-size: 18px;
                 padding: 0 20px;
@@ -822,17 +830,18 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Retro+Gaming&display=swap" rel="stylesheet">
 </head>
+
 <body class="home-theme" onload="initMedia()">
-    
+
     <div class="custom-cursor"></div>
 
-    
+
     <div id="start-screen">
         <div id="start-text"></div>
     </div>
 
     <div class="container">
-        
+
         <video id="background" autoplay loop muted playsinline webkit-playsinline>
             <source src="assets/background.mp4" type="video/mp4">
         </video>
@@ -848,11 +857,15 @@
                         <div id="profile-name">Anna Pierce</div>
                         <div class="badge-box">
                             <div class="badge-box-inner">
-                                <div class="badge-group">  
+                                <div class="badge-group">
                                     <div class="badge-container">
                                         <img src="assets/female.png" alt="Girl" class="badge">
                                         <span class="tooltip">Girl</span>
-                                    </div>                                 
+                                    </div>
+                                    <div class="badge-container">
+                                        <img src="assets/transflag.png" alt="Trans" class="badge">
+                                        <span class="tooltip">Trans</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -878,7 +891,8 @@
                                 </div>
                                 <button id="spotify-refresh" class="spotify-refresh-btn" title="Refresh">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                     </svg>
                                 </button>
                             </div>
@@ -896,7 +910,8 @@
                     <a href="https://www.roblox.com/users/3838965871/profile" target="_blank">
                         <img src="assets/roblox.png" alt="Roblox" class="social-icon">
                     </a>
-                    <a href="https://open.spotify.com/user/s1y2bdypk79eb6emd0ymtxrmc?trackId=61iJknbAXSuBflDz3vSQ0b" target="_blank">
+                    <a href="https://open.spotify.com/user/s1y2bdypk79eb6emd0ymtxrmc?trackId=61iJknbAXSuBflDz3vSQ0b"
+                        target="_blank">
                         <img src="assets/spotify.png" alt="Spotify" class="social-icon">
                     </a>
                     <a href="https://www.youtube.com/@CuteTFemme" target="_blank">
@@ -913,7 +928,9 @@
         <div class="top-controls">
             <div class="volume-control">
                 <svg id="volume-icon" class="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z">
+                    </path>
                 </svg>
                 <input id="volume-slider" class="slider" type="range" min="0" max="1" step="0.01" value="0.175">
             </div>
@@ -933,4 +950,3 @@
 </body>
 
 </html>
-

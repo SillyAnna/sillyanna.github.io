@@ -1,73 +1,36 @@
 let hasUserInteracted = false;
 
-const clientId = 'c8553f03faaf402ca3c77b1c5f907df0'; 
-const clientSecret = '6fc699e1054544619b07234ea308c168'; 
-const refreshToken = 'AQAlamXO7XLJH_e8-HKx3suVQWaW7kvvXgls597n-hvUBKHYrIF2YorKX2PM23D1f5NR4NuWoNgP689Lcae_CSc1-VRiAdYpu3Sc6c6esokVlCj5Xrk0nl3YnRjH0zqqS94'; 
-
-async function getAccessToken() {
-    try {
-        const response = await fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
-            },
-            body: new URLSearchParams({
-                grant_type: 'refresh_token',
-                refresh_token: refreshToken
-            })
-        });
-
-        if (!response.ok) throw new Error('Failed to refresh token');
-        const data = await response.json();
-        return data.access_token;
-    } catch (error) {
-        console.error("Auth Error:", error);
-        return null;
-    }
-}
+const spotifyApiUrl = 'https://sillyanna-github-io.vercel.app/api/spotify';
 
 async function getSpotifyStatus() {
-    const accessToken = await getAccessToken();
-    if (!accessToken) return;
+  try {
+    const response = await fetch(spotifyApiUrl);
+    if (!response.ok) throw new Error('API fetch error');
 
-    try {
-        let response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
-            headers: { 'Authorization': `Bearer ${accessToken}` }
-        });
-
-        if (response.status === 204 || response.status > 400) {
-            response = await fetch('https://api.spotify.com/v1/me/player/recently-played?limit=1', {
-                headers: { 'Authorization': `Bearer ${accessToken}` }
-            });
-            const data = await response.json();
-            if (data.items && data.items.length > 0) {
-                updateSpotifyUI(data.items[0].track, false);
-            }
-        } else {
-            const data = await response.json();
-            updateSpotifyUI(data.item, data.is_playing);
-        }
-    } catch (error) {
-        console.error("Spotify Fetch Error:", error);
-        document.getElementById('spotify-song').textContent = "Error loading";
+    const data = await response.json();
+    if (data.track) {
+      updateSpotifyUI(data.track, data.is_playing);
     }
+  } catch (error) {
+    console.error("Spotify Fetch Error:", error);
+    document.getElementById('spotify-song').textContent = "Error loading";
+  }
 }
 
 function updateSpotifyUI(track, isPlaying) {
-    const art = document.getElementById('spotify-art');
-    const song = document.getElementById('spotify-song');
-    const artist = document.getElementById('spotify-artist');
-    const statusText = document.getElementById('spotify-status-text');
-    const link = document.getElementById('spotify-link');
+  const art = document.getElementById('spotify-art');
+  const song = document.getElementById('spotify-song');
+  const artist = document.getElementById('spotify-artist');
+  const statusText = document.getElementById('spotify-status-text');
+  const link = document.getElementById('spotify-link');
 
-    if (track) {
-        art.src = track.album.images[0].url;
-        song.textContent = track.name;
-        artist.textContent = track.artists.map(a => a.name).join(', ');
-        statusText.textContent = isPlaying ? "Now Playing" : "Last Played";
-        link.href = track.external_urls.spotify;
-    }
+  if (track) {
+    art.src = track.album.images[0].url;
+    song.textContent = track.name;
+    artist.textContent = track.artists.map(a => a.name).join(', ');
+    statusText.textContent = isPlaying ? "Now Playing" : "Last Played";
+    link.href = track.external_urls.spotify;
+  }
 }
 
 function initMedia() {
@@ -79,9 +42,9 @@ function initMedia() {
     return;
   }
   backgroundMusic.volume = 0.225;
-  backgroundVideo.muted = true; 
+  backgroundVideo.muted = true;
 
-  
+
   backgroundVideo.play().catch(err => {
     console.error("Failed to play background video:", err);
   });
@@ -104,14 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const socialIcons = document.querySelectorAll('.social-icon');
   const badges = document.querySelectorAll('.badge');
 
-    getSpotifyStatus();
+  getSpotifyStatus();
   const refreshBtn = document.getElementById('spotify-refresh');
-  if(refreshBtn) {
-      refreshBtn.addEventListener('click', () => {
-          refreshBtn.style.transform = "rotate(360deg)";
-          getSpotifyStatus();
-          setTimeout(() => { refreshBtn.style.transform = "rotate(0deg)"; }, 500);
-      });
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      refreshBtn.style.transform = "rotate(360deg)";
+      getSpotifyStatus();
+      setTimeout(() => { refreshBtn.style.transform = "rotate(0deg)"; }, 500);
+    });
   }
 
   const cursor = document.querySelector('.custom-cursor');
@@ -119,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (isTouchDevice) {
     document.body.classList.add('touch-device');
-    
+
     document.addEventListener('touchstart', (e) => {
       const touch = e.touches[0];
       cursor.style.left = touch.clientX + 'px';
@@ -135,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('touchend', () => {
-      cursor.style.display = 'none'; 
+      cursor.style.display = 'none';
     });
   } else {
 
@@ -185,10 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
     profileBlock.classList.remove('hidden');
     gsap.fromTo(profileBlock,
       { opacity: 0, y: -50 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power2.out', onComplete: () => {
-        profileBlock.classList.add('profile-appear');
-        profileContainer.classList.add('orbit');
-      }}
+      {
+        opacity: 1, y: 0, duration: 1, ease: 'power2.out', onComplete: () => {
+          profileBlock.classList.add('profile-appear');
+          profileContainer.classList.add('orbit');
+        }
+      }
     );
     if (!isTouchDevice) {
       try {
