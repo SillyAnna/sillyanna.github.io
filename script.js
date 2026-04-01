@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriterBio();
   });
 
-  const name = "Anna Pierce";
+  const name = "Anna Kasumi";
   let nameText = '';
   let nameIndex = 0;
   let isNameDeleting = false;
