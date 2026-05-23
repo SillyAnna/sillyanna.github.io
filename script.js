@@ -210,7 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
     "\"I am an angel sent down from above. Praise be the heavens, Praise me I'm the lord.\"",
     "\"Everything means nothing to me.\"",
     "\"I can't do well when I think you're going to leave me but I know I try. Are you going to leave me now?\"",
-    "\"Ashes ashes we all fall down..\""
+    "\"Ashes ashes we all fall down..\"",
+    "\"Woke up in a field with my head on backwards, now everybody seems like an actor.\"",
+    "\"Sorry, forgive me I'm a useless adult.. Though it's useless to regret.\""
   ];
   let bioText = '';
   let bioIndex = 0;
