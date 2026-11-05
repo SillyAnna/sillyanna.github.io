@@ -203,6 +203,22 @@
             opacity: 1 !important;
         }
 
+        .discord-dot {
+            position: absolute;
+            right: 7%;
+            bottom: 7%;
+            width: 18%;
+            height: 18%;
+            border-radius: 50%;
+            border: 4px solid #111;
+            z-index: 1;
+        }
+
+        .discord-dot.online { background: #23a55a; }
+        .discord-dot.idle { background: #f0b232; }
+        .discord-dot.dnd { background: #f23f43; }
+        .discord-dot.offline { background: #80848e; }
+
         .profile-info {
             flex: 1;
             display: flex;
@@ -855,6 +871,7 @@
             <div class="profile-header">
                 <div class="profile-container">
                     <img src="assets/profile.jpg" alt="Profile" class="profile-picture">
+                    <span id="discord-status" class="discord-dot offline" title="Offline on Discord"></span>
                 </div>
                 <div class="profile-info">
                     <div class="name-and-badges">

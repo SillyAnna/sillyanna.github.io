@@ -33,6 +33,22 @@ function updateSpotifyUI(track, isPlaying) {
   }
 }
 
+const discordUserId = '705739559689781259';
+const discordLabels = { online: 'Online', idle: 'Idle', dnd: 'Do Not Disturb', offline: 'Offline' };
+
+async function getDiscordStatus() {
+  const dot = document.getElementById('discord-status');
+  try {
+    const response = await fetch(`https://api.lanyard.rest/v1/users/${discordUserId}`);
+    const { data } = await response.json();
+    const status = discordLabels[data.discord_status] ? data.discord_status : 'offline';
+    dot.className = `discord-dot ${status}`;
+    dot.title = `${discordLabels[status]} on Discord`;
+  } catch (error) {
+    console.error("Discord Fetch Error:", error);
+  }
+}
+
 function initMedia() {
   console.log("initMedia called");
   const backgroundMusic = document.getElementById('background-music');
@@ -68,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const badges = document.querySelectorAll('.badge');
 
   getSpotifyStatus();
+  getDiscordStatus();
+  setInterval(getDiscordStatus, 30000);
   const refreshBtn = document.getElementById('spotify-refresh');
   if (refreshBtn) {
     refreshBtn.addEventListener('click', () => {
