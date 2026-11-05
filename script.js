@@ -331,13 +331,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  profileBlock.addEventListener('mousemove', (e) => handleTilt(e, profileBlock));
-  profileBlock.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-    handleTilt(e, profileBlock);
-  });
-
-
   profileBlock.addEventListener('mouseleave', () => {
     gsap.to(profileBlock, {
       rotationX: 0,
