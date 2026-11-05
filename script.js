@@ -165,10 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
     currentAudio.volume = 0.175;
     profileBlock.classList.remove('hidden');
     gsap.fromTo(profileBlock,
-      // xPercent/yPercent keep the CSS translate(-50%, -50%) centering, which Chrome's GSAP parse otherwise loses
-      { opacity: 0, y: -50, xPercent: -50, yPercent: -50 },
+      { opacity: 0, y: -50 },
       {
-        opacity: 1, y: 0, xPercent: -50, yPercent: -50, duration: 1, ease: 'power2.out', onComplete: () => {
+        opacity: 1, y: 0, duration: 1, ease: 'power2.out', onComplete: () => {
           profileBlock.classList.add('profile-appear');
           profileContainer.classList.add('orbit');
         }
